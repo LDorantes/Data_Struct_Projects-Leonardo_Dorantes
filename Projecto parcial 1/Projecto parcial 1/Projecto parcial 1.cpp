@@ -16,7 +16,7 @@ int main()
     RawArray myArray(9);
     //myArray.Initial(5);
 
-
+    myArray.ArrayInside();
     std::cout << "Original Array: \n";
 
     myArray.Print();
