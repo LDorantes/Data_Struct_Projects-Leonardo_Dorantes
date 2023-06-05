@@ -12,6 +12,9 @@ public:
 	//Este es el destructor de la clase. Se utiliza para liberar la memoria dinamica asignada al arreglo anteriormente. 
 	~RawArray();
 
+	// Esta funcion realiza la asignacion del contenido del array. 
+	void ArrayInside();
+
 	//Es una funcion que se encarga de iniciarizar todos los elementos del arreglo. 
 	//El parametro InitialValue funciona para indicar el valor deseado para inicializar los elementos.  
 	void Initial(int InitialValue = 0);
