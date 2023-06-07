@@ -25,11 +25,7 @@ RawArray::RawArray(int in_Size) : Size(in_Size)
 	}
 	else if (Size < 6) {
 		std::cout << "Error: El size especificado es menor que el size minimo requerido (6)." << std::endl;
-		Size = 6;
-		for (int i = 6; i < Size; i++)
-		{
-			InitialElement[i] = 0;
-		}
+		reurn;
 	}
 }
 
