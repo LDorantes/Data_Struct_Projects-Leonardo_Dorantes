@@ -2,10 +2,40 @@
 //
 
 #include <iostream>
+#include "Deque.h"
+#include "queue.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    queue<char> MyQueue = queue<char>(6);
+    MyQueue.Enqueue('a');
+    MyQueue.Enqueue('b');
+    MyQueue.Enqueue('c');
+    MyQueue.Enqueue('d');
+    MyQueue.Enqueue('e');
+    MyQueue.Enqueue('f');
+
+    MyQueue.Print(); 
+
+    if (MyQueue.Full() == true)
+    {
+        std::cout << "La Queue está llena." << '\n';
+    }
+
+    MyQueue.Dequeue();
+    MyQueue.Print();
+
+    MyQueue.Enqueue('g');
+    MyQueue.Enqueue('h');
+
+    if (MyQueue.Full() == true)
+    {
+        std::cout << "La Queue está llena de nuevo." << '\n';
+    }
+
+    MyQueue.Print();
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
