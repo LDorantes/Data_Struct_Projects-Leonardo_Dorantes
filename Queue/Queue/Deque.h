@@ -31,6 +31,47 @@ public:
 		delete[] InitialElement;  // liberamos la memoria pedida para nuestro arreglo de tipo T.
 	}
 
+	void FrontEnqueue(T element)
+	{
+		if (Full())
+		{
+			if (_isDynamic == true)
+			{
+				// Pedir más memoria
+				T* AuxPointer = new T[_size * 2];
+
+				// Copiar lo de la vieja memoria a esta nueva memoria
+				for (int i = 0; i < _currentElements; i++)
+				{
+					AuxPointer[i] = InitialElement[(i + _head) % _size];
+				}
+
+				// Cambiar a dónde apunta InitialElement
+				InitialElement = AuxPointer;
+				_size = _size * 2;
+
+				// Necesitamos también actualizar los valores de head y tail.
+				_head = 0;
+				_tail = _currentElements;
+			}
+			else
+			{
+				std::cout << "Deque llena" << '\n';
+				return;
+			}
+		}
+
+		// Calcular la nueva posición de _head
+		_head = (_head - 1 + _size) % _size;
+
+		// Agregar el elemento en la nueva posición de _head
+		InitialElement[_head] = element;
+
+		// Incrementar el número de elementos actuales
+		_currentElements++;
+	}
+
+
 	// Añade el elemento "element" en la posición Tail de la Queue, e incrementa el valor de Tail en 1.
 	void EnqueueBack(T element)
 	{
@@ -127,6 +168,54 @@ public:
 		}
 	}
 
+	void BackDequeue()
+	{
+		if (Empty())
+		{
+			std::cout << "ERROR, tratando de quitar elementos de la Deque, pero no hay. Underflow." << '\n';
+			return;
+		}
+
+		// Calculamos la nueva posición de tail
+		if (_tail == 0)
+		{
+			_tail = _size - 1;
+		}
+		else
+		{
+			_tail--;
+		}
+
+		// Decrementamos el número de elementos actuales
+		_currentElements--;
+
+		if (_isDynamic == true)
+		{
+			// Verificamos si es necesario reducir la memoria ocupada por la Deque
+			if (_currentElements <= _size / 4)
+			{
+				// Pedimos nueva memoria
+				T* AuxPointer = new T[_size / 2];
+
+				// Copiamos los elementos de la memoria actual a la nueva memoria
+				for (int i = 0; i < _currentElements; i++)
+				{
+					AuxPointer[i] = InitialElement[(i + _head) % _size];
+				}
+
+				// Liberamos la memoria actual
+				delete[] InitialElement;
+				InitialElement = AuxPointer;
+				_size = _size / 2;
+
+				// Actualizamos head y tail
+				_head = 0;
+				_tail = _currentElements;
+			}
+		}
+	}
+
+
 	// Regresa el valor del elemento en el índice Head de la Queue
 	T Front()
 	{
@@ -160,6 +249,16 @@ public:
 		//	return true;
 
 		return false;
+	}
+
+	void PrintDeque() 
+	{
+		// Cuántas veces debería imprimir letras? _currentElements;
+		for (int i = 0; i < _currentElements; i++)
+		{
+			std::cout << InitialElement[(i + _head) % _size] << ", ";
+		}
+		std::cout << '\n';
 	}
 
 	// Imprimir // No es exactamente igual que la de Stack ni la de RawArray.

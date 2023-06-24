@@ -35,6 +35,54 @@ int main()
 
     MyQueue.Print();
 
+    //parte de la tarea //////////////////////////////////////////
+    
+    // FrontEnqueue 
+
+    std::cout << "\n FrontEnqueue \n";
+    // Creamos una instancia de Deque<char>
+    Deque<char> myDeque(5);
+
+    // Agregar elementos a la cola
+    myDeque.EnqueueBack('a');
+    myDeque.EnqueueBack('b');
+    myDeque.EnqueueBack('c');
+    myDeque.EnqueueBack('d');
+    myDeque.EnqueueBack('e');
+
+    // Imprimir la cola antes de FrontEnqueue
+    std::cout << "Cola antes de FrontEnqueue: ";
+    myDeque.PrintDeque();
+    std::cout << std::endl;
+
+    // Agregar elementos al frente de la cola usando FrontEnqueue
+    myDeque.FrontEnqueue('e');
+    myDeque.FrontEnqueue('f');
+    
+
+    // Imprimir la cola después de FrontEnqueue
+    std::cout << "Cola después de FrontEnqueue: ";
+    myDeque.PrintDeque();
+    std::cout << std::endl;
+
+    // Funsión BackDequeue
+    // 
+    // 
+  
+    std::cout << "\nFunsión BackDequeue\n";
+    // Ejecutar otros métodos y operaciones en la Deque
+
+    // Imprimir la Deque antes de BackDequeue
+    std::cout << "Deque antes de BackDequeue: ";
+    myDeque.PrintDeque();
+
+    // Utilizar BackDequeue() para quitar el último elemento de la Deque
+    myDeque.BackDequeue();
+
+    // Imprimir la Deque después de BackDequeue
+    std::cout << "Deque después de BackDequeue: ";
+    myDeque.PrintDeque();
+
     return 0;
 }
 
