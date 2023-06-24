@@ -219,13 +219,29 @@ public:
 	// Regresa el valor del elemento en el índice Head de la Queue
 	T Front()
 	{
-		return NULL; // Retorna un valor NULL por defecto
+		if (Empty())
+		{
+			std::cout << "La Queue está vacía" << std::endl;
+			// Podrías lanzar una excepción en lugar de imprimir un mensaje y devolver un valor predeterminado
+			// throw std::runtime_error("La Queue está vacía");
+			return T(); // Devolver un valor predeterminado del tipo T
+		}
+
+		return InitialElement[_head];
 	}
 
 	// Regresa el valor del elemento en el índice Tail de la Queue
 	T Back()
 	{
-		return NULL; // Retorna un valor NULL por defecto
+		if (Empty())
+		{
+			// Manejar el caso de Queue vacía
+			std::cout << "Error: La Queue está vacía. No se puede obtener el elemento al final.";
+			return T();  // Retornar un valor predeterminado en caso de error
+		}
+
+		int backIndex = (_tail - 1 + _size) % _size;
+		return InitialElement[backIndex];
 	}
 
 	bool Empty()

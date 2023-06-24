@@ -37,9 +37,9 @@ int main()
 
     //parte de la tarea //////////////////////////////////////////
     
-    // FrontEnqueue 
+    // FrontEnqueue Function 
 
-    std::cout << "\n FrontEnqueue \n";
+    std::cout << "\n FrontEnqueue Function  \n";
     // Creamos una instancia de Deque<char>
     Deque<char> myDeque(5);
 
@@ -65,11 +65,11 @@ int main()
     myDeque.PrintDeque();
     std::cout << std::endl;
 
-    // Funsión BackDequeue
+    // BackDequeue Funsión 
     // 
     // 
   
-    std::cout << "\nFunsión BackDequeue\n";
+    std::cout << "\nBackDequeue Function \n";
     // Ejecutar otros métodos y operaciones en la Deque
 
     // Imprimir la Deque antes de BackDequeue
@@ -83,16 +83,37 @@ int main()
     std::cout << "Deque después de BackDequeue: ";
     myDeque.PrintDeque();
 
+    //T Front function 
+    //
+    //
+    // 
+    std::cout << "\nT Front Function \n";
+    // Imprimir la cola antes de Front()
+    std::cout << "Cola antes de Front(): ";
+    myDeque.PrintDeque(); 
+
+    // Obtener el elemento en el frente de la cola usando Front()
+    if (!myDeque.Empty())
+    {
+        char frontElement = myDeque.Front();
+        std::cout << "Elemento en el frente de la cola: " << frontElement << std::endl;
+    }
+    else
+    {
+        std::cout << "La cola está vacía" << std::endl;
+    }
+
+    // T Back function 
+    //
+    //
+    std::cout << "\nT Back Function\n";
+    // Utilizamos la función Back() para obtener el elemento al final de la Queue
+    std::cout << "Cola antes de Back(): ";
+    myDeque.PrintDeque(); 
+    char backElement = myDeque.Back();
+    std::cout << "Elemento al final de la Queue: " << backElement << std::endl;
+
+
     return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
