@@ -2,10 +2,34 @@
 //
 
 #include <iostream>
+#include "List.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+   // List<char> myList = List<char>();
+   // myList.PushBack('a');
+    //myList.GetByValue('a');
+    //myList.PopFront();
+    //////////
+    //Parte Tarea
+ 
+    //Constructor list
+    std::cout << "Constructor list \n";
+    const int arraySize = 5;
+    int myArray[arraySize] = { 1, 3, 5, 7, 9 };
+    List<int> myList = List<int>(myArray, arraySize);
+
+    myList.Print(); 
+   // Imprime: 1, 3, 5, 7, 9
+   // 
+    //Reverse Function
+    std::cout << "Reverse Function \n";
+    myList.Reverse(); 
+
+    myList.Print(); 
+
+    //
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

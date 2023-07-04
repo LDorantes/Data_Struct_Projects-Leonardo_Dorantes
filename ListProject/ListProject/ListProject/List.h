@@ -1,6 +1,4 @@
 #pragma once
-#pragma once
-
 #ifndef LIST
 #define LIST
 
@@ -23,6 +21,8 @@ public:
 
 	T data;// Los datos
 	ListNode<T>* next;// una referencia al nodo sigue de este nodo, dentro de la lista.
+
+	
 };
 
 
@@ -42,11 +42,20 @@ public:
 		firstNode = nullptr;
 		size = 0;
 	}
+	
 
-	/*List(T dataArray[], int dataSize)
+	// Constructor que recibe un T* array y un int size
+	// Mete cada uno de los elementos de in_data en un nodo y los almacena en la lista que está siendo construida.
+	List(T* in_data, int in_size)
 	{
+		firstNode = nullptr;
+		size = 0;
 
-	}*/
+		for (int i = 0; i < in_size; i++)
+		{
+			PushBack(in_data[i]);
+		}
+	}
 
 	~List()
 	{
@@ -59,7 +68,7 @@ public:
 			PopFront(); // quita el primer nodo.
 		}
 	}
-
+	
 	void PushBack(T element)
 	{
 
@@ -129,6 +138,39 @@ public:
 			firstNode = nullptr;
 		}
 		size--;
+	}
+	// Quita al último elemento de la lista
+	void PopBack()
+	{
+		// disminuye el size en 1
+		size--;
+
+		// primero necesitamos hacer una verificación extra:
+		if (firstNode == nullptr)
+		{
+			return;  // aquí nos podemos regresar ya que no hay nada más que hacer.
+		}
+
+		// ahora sí necesitamos hacer una verificación extra:
+		// la lista sólo tiene 1 elemento.
+		if (firstNode->next == nullptr)
+		{
+			delete firstNode;
+			firstNode = nullptr;
+			return;
+		}
+
+		// Si llegamos aquí, significa que nuestra lista tiene 2 o más elementos.
+		// el último nodo en nuestra lista es el predecesor de nullptr.
+		ListNode<T>* currentNode = firstNode;
+		// Iteramos hasta encontrar el penúltimo de la lista
+		while (currentNode->next->next != nullptr)
+			currentNode = currentNode->next;
+
+		// currentNode apunta al penúltimo elemento de la lista.
+		delete currentNode->next;
+		// Decimos explícitamente que nullptr es nullptr, por claridad.
+		currentNode->next = nullptr;
 	}
 
 	// Insertar en el índice index
@@ -206,7 +248,9 @@ public:
 			return nullptr; // índice no válido, regresa nullptr por defecto.
 		}
 
-		ListNode<T>* auxPointer = firstNode;
+		//ListNode<T>* auxPointer = firstNode;
+		//Evita verificar el primer nodo dos veces.
+		ListNode<T>* auxPointer = firstNode->next; 
 		while (auxPointer != nullptr)
 		{
 			// Checamos si este nodo, tiene el value que nos dieron como entrada.
@@ -240,7 +284,7 @@ public:
 		// no necesitamos 'else' porque el return de arriba los sacaría de la función.
 
 		ListNode<T>* currentNode = firstNode;
-		for (int i = 0; i < index; i++)
+		for (int i = 0; i < index - 1; i++) 
 			currentNode = currentNode->next;
 
 		return currentNode;
@@ -272,7 +316,57 @@ public:
 	}
 
 
+	
+	void Print()
+	{
+		if (firstNode == nullptr)
+		{
+			std::cout << "Lista vacía" << std::endl;
+			return;
+		}
 
+		ListNode<T>* currentNode = firstNode;
+
+		while (currentNode != nullptr)
+		{
+			std::cout << currentNode->data;
+
+			if (currentNode->next != nullptr)
+			{
+				std::cout << ", ";
+			}
+			else
+			{
+				std::cout << std::endl;
+			}
+
+			currentNode = currentNode->next;
+		}
+	}
+	void Reverse() 
+	{
+		if (firstNode == nullptr || firstNode->next == nullptr)
+		{
+			// La lista está vacía o solo tiene un elemento, no hay nada que invertir.
+			return;
+		}
+
+		ListNode<T>* prevNode = nullptr;
+		ListNode<T>* currentNode = firstNode;
+		ListNode<T>* nextNode = nullptr;
+
+		while (currentNode != nullptr)
+		{
+			nextNode = currentNode->next;  // Guardamos el nodo siguiente antes de invertir los enlaces.
+			currentNode->next = prevNode;  // Invertimos el enlace al nodo siguiente.
+
+			// Avanzamos los punteros al siguiente nodo.
+			prevNode = currentNode;
+			currentNode = nextNode;
+		}
+
+		firstNode = prevNode;  // Actualizamos el puntero al primer nodo, que ahora es el último.
+	}
 
 
 };
