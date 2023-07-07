@@ -15,8 +15,8 @@ int main()
  
     //Constructor list
     std::cout << "Constructor list \n";
-    const int arraySize = 5;
-    int myArray[arraySize] = { 1, 3, 5, 7, 9 };
+    const int arraySize = 10;
+    int myArray[arraySize] = { 1, 1, 4, 3, 4, 5, 7, 9, 7, 0 };
     List<int> myList = List<int>(myArray, arraySize);
 
     myList.Print(); 
@@ -28,7 +28,12 @@ int main()
 
     myList.Print(); 
 
-    //
+    // Unique Function
+    std::cout << "Unique Function \n";
+    myList.Unique();
+
+    myList.Print();
+    // Imprime: 1, 2, 3, 4
     return 0;
 }
 
