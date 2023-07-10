@@ -368,6 +368,39 @@ public:
 		firstNode = prevNode;  // Actualizamos el puntero al primer nodo, que ahora es el último.
 	}
 
+	void Unique()
+	{
+		//verificamos que nobhaya repetidos.
+		if (firstNode == nullptr)
+		{
+			//no hay repetidos que eliminar
+			return;
+		}
+
+		ListNode<T>* currentNode = firstNode;
+		while (currentNode != nullptr)
+		{
+			ListNode<T>* runnerNode = currentNode;
+			while (runnerNode->next != nullptr)
+			{
+				//Si encuentramos un rpetido, se elimina con delete
+				if (runnerNode->next->data == currentNode->data)
+				{
+					ListNode<T>* duplicateNode = runnerNode->next;
+					runnerNode->next = runnerNode->next->next;
+					delete duplicateNode; 
+				}
+				//Si no hay repetidos se mueve al siguiente nodo 
+				else
+				{
+					runnerNode = runnerNode->next; 
+				}
+			}
+
+			currentNode = currentNode->next; // Avanza al siguiente nodo para revisar si hay repetidos. 
+		}
+	}
+
 
 	void Unique()
 	{
