@@ -34,6 +34,34 @@ int main()
     std::cout << "Queue elements: ";
     myQueue.PrintQueue();
 
+    // Parte de la clase LStack
+    LStack<int> myStack;
+
+    myStack.Push(5);
+    myStack.Push(10);
+    myStack.Push(15);
+    myStack.Push(15);
+    std::cout << "\n\nElementos en el stack:\n ";
+    myStack.PrintStack();
+    std::cout << "Top: " << myStack.Top() << std::endl;
+    myStack.PrintStack();
+    std::cout << "\nPop Function\n";
+    std::cout << "Quita el elemento del tope de la Stack \n";
+    myStack.Pop();
+    myStack.PrintStack();
+    std::cout << "Top: " << myStack.Top() << std::endl;
+    myStack.Pop();
+    std::cout << "\nPop Function \n";
+    std::cout << "Quita el elemento del tope de la Stack \n";
+    myStack.PrintStack();
+    std::cout << "Top: " << myStack.Top() << std::endl;
+    myStack.Pop();
+    std::cout << "\nPop Function \n";
+    std::cout << "Quita el elemento del tope de la Stack \n";
+    myStack.PrintStack();
+    std::cout << "Top: " << myStack.Top() << std::endl;
+    myStack.PrintStack();
+
     return 0;
 }
 
