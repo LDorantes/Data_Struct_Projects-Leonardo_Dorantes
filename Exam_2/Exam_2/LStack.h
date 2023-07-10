@@ -1,4 +1,6 @@
 #pragma once
+#include "ListE.h"
+#include <iostream>
 // if not defined -> si no está definido
 #ifndef LSTACK
 #define LSTACK

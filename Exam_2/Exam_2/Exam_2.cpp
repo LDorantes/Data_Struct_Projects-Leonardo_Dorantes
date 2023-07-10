@@ -2,10 +2,39 @@
 //
 
 #include <iostream>
+#include "LQueue.h"
+#include "LStack.h"
+#include "Triague.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Hello Professor!\n";
+    std::cout << "Examen segundo parcial \n";
+    // Parte de la clase LQueue
+    LQueue<int> myQueue;
+
+    myQueue.Enqueue(10);
+    myQueue.Enqueue(20);
+    myQueue.Enqueue(30);
+    std::cout << "\n Enqueue Function \n";
+    std::cout << "Añade elementos al inicio de de la Queue, en este caso 10,20,30 \n ";
+    myQueue.PrintQueue();
+    std::cout << "Dequeue Function \n";
+    std::cout << " Quita el elemento al inicio de la Queue \n";
+    myQueue.Dequeue();
+    myQueue.PrintQueue();  
+    std::cout << "Front: " << myQueue.front() << std::endl;
+    std::cout << "Back: " << myQueue.back() << std::endl;
+    myQueue.Dequeue(); 
+    myQueue.PrintQueue();
+    myQueue.Dequeue(); 
+    myQueue.PrintQueue();
+
+
+    std::cout << "Queue elements: ";
+    myQueue.PrintQueue();
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

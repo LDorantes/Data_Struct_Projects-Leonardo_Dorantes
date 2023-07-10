@@ -128,11 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Exam_2.cpp" />
+    <ClCompile Include="ListE.cpp" />
     <ClCompile Include="LQueue.cpp" />
     <ClCompile Include="LStack.cpp" />
     <ClCompile Include="Triague.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ListE.h" />
     <ClInclude Include="LQueue.h" />
     <ClInclude Include="LStack.h" />
     <ClInclude Include="Triague.h" />
