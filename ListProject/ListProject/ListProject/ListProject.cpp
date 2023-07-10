@@ -28,7 +28,26 @@ int main()
 
     myList.Print(); 
 
-    //
+    //Unique Function
+    std::cout << "Unique Function \n";
+    myList.PushBack(1);
+    myList.PushBack(1);
+    myList.PushBack(2);
+    myList.PushBack(3);
+    myList.PushBack(4);
+    myList.PushBack(2);
+    myList.PushBack(3);
+    myList.PushBack(1);
+
+    std::cout << "Lista original: ";
+    myList.Print();
+
+    // Unique Function
+    std::cout << "Unique Function \n";
+    myList.Unique();
+
+    myList.Print();
+    // Imprime: 1, 2, 3, 4
     return 0;
 }
 
