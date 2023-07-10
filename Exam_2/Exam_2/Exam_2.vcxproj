@@ -128,6 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Exam_2.cpp" />
+    <ClCompile Include="LQueue.cpp" />
+    <ClCompile Include="LStack.cpp" />
+    <ClCompile Include="Triague.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LQueue.h" />
+    <ClInclude Include="LStack.h" />
+    <ClInclude Include="Triague.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
