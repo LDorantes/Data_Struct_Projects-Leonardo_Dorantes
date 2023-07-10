@@ -25,10 +25,7 @@ int main()
     myQueue.PrintQueue();  
     std::cout << "Front: " << myQueue.front() << std::endl;
     std::cout << "Back: " << myQueue.back() << std::endl;
-    myQueue.Dequeue(); 
-    myQueue.PrintQueue();
-    myQueue.Dequeue(); 
-    myQueue.PrintQueue();
+   
 
 
     std::cout << "Queue elements: ";
