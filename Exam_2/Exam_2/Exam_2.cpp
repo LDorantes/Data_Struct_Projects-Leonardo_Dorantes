@@ -67,16 +67,16 @@ int main()
     Triage triage;
     std::cout << "\n Triage Class \n";
 
-    triage.AddPatient("Pablo", 1);
-    triage.AddPatient("Maria", 5);
-    triage.AddPatient("Luis", 3);
-    triage.AddPatient("Pancho", 2);
-    triage.AddPatient("Juan", 1);
-    triage.AddPatient("Pepe", 4);
-    triage.AddPatient("Ana", 5);
-    triage.AddPatient("Pedro", 1);
+    triage.AddPatient("Leonardo", 1);
+    triage.AddPatient("Brandon", 5);
+    triage.AddPatient("Jose", 3);
+    triage.AddPatient("Ana", 2);
+    triage.AddPatient("Dafne", 1);
+    triage.AddPatient("Morgan", 4);
+    triage.AddPatient("Diego", 5);
+    triage.AddPatient("Camila", 1);
 
-   
+    std::cout << "\nPasPatient (4) applied\n ";
     triage.Print(); 
     triage.PassPatient(); 
     triage.PassPatient(); 
@@ -86,12 +86,18 @@ int main()
     triage.Print(); 
 
 
-    // Debe imprimir lo siguiente:
-    // 1-> Juan, Pedro
-    // 2->
-    // 3-> Luis
-    // 4-> Pepe
-    // 5-> Maria, Ana
+   /*
+    Para almacenar los pacientes y sus niveles de urgencia,
+    Decidimos usar una estructura de tipo QUEUE (priority queue).
+    Esto ya que nos permite que los elementos se ordenen automáticamente según su prioridad,
+    en este caso, el nivel de urgencia. Cada vez que se atienda a un paciente, 
+    y así el siguiente en la cola de prioridad será el paciente con el nivel de urgencia más bajo.
+
+    Para almacenar los nombres de los pacientes,utilizamos una 
+    estructura de tipo LIST para almacenar los nombres de los pacientes. 
+    Que nos permite agregar elementos al final de la lista de manera eficiente
+    y mantener un orden  de los pacientes atendidos.
+   */
 
     return 0;
 }
