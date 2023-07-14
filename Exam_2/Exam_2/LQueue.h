@@ -26,13 +26,32 @@ public:
 
     T front()
     {
-        return data.GetByIndex(0)->data; // Utilizamos la función GetByIndex de la clase List para obtener el primer elemento de la lista
+        if (data.GetSize() > 0)
+        {
+            return data.GetByIndex(0)->data;
+        }
+        else
+        {
+            
+            throw std::runtime_error("La cola está vacía");
+        }
     }
 
     T back()
     {
-        return data.GetByIndex(data.GetSize() - 1)->data; // Utilizamos la función GetByIndex de la clase List para obtener el último elemento de la lista
+        int size = data.GetSize();
+        if (size > 0)
+        {
+            return data.GetByIndex(size - 1)->data;
+        }
+        else
+        {
+            // Manejar el caso de cola vacía como desees
+            throw std::runtime_error("La cola está vacía");
+        }
     }
+
+
 
     void PrintQueue()
     {

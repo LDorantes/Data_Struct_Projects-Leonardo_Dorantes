@@ -17,12 +17,14 @@ int main()
     myQueue.Enqueue(20);
     myQueue.Enqueue(30);
     std::cout << "\n Enqueue Function \n";
-    std::cout << "Añade elementos al inicio de de la Queue, en este caso 10,20,30 \n ";
+    std::cout << "añade el elemento 'value' hasta el final de la Queue., en este caso 10,20,30 \n ";
     myQueue.PrintQueue();
     std::cout << "Dequeue Function \n";
     std::cout << " Quita el elemento al inicio de la Queue \n";
     myQueue.Dequeue();
     myQueue.PrintQueue();  
+    myQueue.Enqueue(10);
+    myQueue.PrintQueue(); 
     std::cout << "Front: " << myQueue.front() << std::endl;
     std::cout << "Back: " << myQueue.back() << std::endl;
    
