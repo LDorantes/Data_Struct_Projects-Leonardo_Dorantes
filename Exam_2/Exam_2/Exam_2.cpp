@@ -76,9 +76,13 @@ int main()
     triage.AddPatient("Ana", 5);
     triage.AddPatient("Pedro", 1);
 
+   
+    triage.Print(); 
     triage.PassPatient(); 
     triage.PassPatient(); 
-
+    triage.PassPatient();
+    triage.PassPatient(); 
+    std::cout << "\n ";
     triage.Print(); 
 
 

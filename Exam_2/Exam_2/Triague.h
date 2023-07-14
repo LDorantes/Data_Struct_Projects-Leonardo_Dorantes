@@ -34,10 +34,10 @@ private:
 public:
     void AddPatient(const std::string& patient_name, int urgency)
     {
-        std::cout << "Adding patient: " << patient_name << ", Urgency: " << urgency << std::endl;
+        //std::cout << "Adding patient: " << patient_name << ", Urgency: " << urgency << std::endl;
         patientQueue.push(Patient(patient_name, urgency));
         patientLevels[urgency - 1].PushBack(patient_name); // Agrega el nombre del paciente a la lista correspondiente
-        std::cout << "Patient added successfully" << std::endl;
+        //std::cout << "Patient added successfully" << std::endl;
     }
 
 
@@ -45,13 +45,18 @@ public:
 
     void PassPatient()
     {
-        if (!patientQueue.empty())
+        for (int i = 0; i < 5; i++)
         {
-            Patient nextPatient = patientQueue.top();
-            patientQueue.pop();
-            attendedPatients.PushBack(nextPatient.name);
+            List<std::string>& levelList = patientLevels[i];
+            if (!levelList.IsEmpty())
+            {
+                levelList.PopFront();
+                break;
+            }
         }
     }
+
+
 
     void Print()
     {
