@@ -25,6 +25,15 @@ private:
 	int size;
 
 public:
+	ListNode<T>* GetFirstNode() const
+	{
+		return firstNode;
+	}
+	ListNode<T>* begin()
+	{
+		return firstNode;
+	}
+
 	int GetSize() const
 	{
 		return size;

@@ -12,6 +12,7 @@ int main()
     std::cout << "Examen segundo parcial \n";
     // Parte de la clase LQueue
     LQueue<int> myQueue;
+    std::cout << "\nLQueue Class\n";
 
     myQueue.Enqueue(10);
     myQueue.Enqueue(20);
@@ -35,12 +36,13 @@ int main()
 
     // Parte de la clase LStack
     LStack<int> myStack;
+    std::cout << "\n LStack Class\n ";
 
     myStack.Push(5);
     myStack.Push(10);
     myStack.Push(15);
     myStack.Push(15);
-    std::cout << "\n\nElementos en el stack:\n ";
+    std::cout << "\nElementos en el stack:\n ";
     myStack.PrintStack();
     std::cout << "Top: " << myStack.Top() << std::endl;
     myStack.PrintStack();
@@ -60,6 +62,32 @@ int main()
     myStack.PrintStack();
     std::cout << "Top: " << myStack.Top() << std::endl;
     myStack.PrintStack();
+
+    //Parte de la clase Triague
+    Triage triage;
+    std::cout << "\n Triage Class \n";
+
+    triage.AddPatient("Pablo", 1);
+    triage.AddPatient("Maria", 5);
+    triage.AddPatient("Luis", 3);
+    triage.AddPatient("Pancho", 2);
+    triage.AddPatient("Juan", 1);
+    triage.AddPatient("Pepe", 4);
+    triage.AddPatient("Ana", 5);
+    triage.AddPatient("Pedro", 1);
+
+    triage.PassPatient(); 
+    triage.PassPatient(); 
+
+    triage.Print(); 
+
+
+    // Debe imprimir lo siguiente:
+    // 1-> Juan, Pedro
+    // 2->
+    // 3-> Luis
+    // 4-> Pepe
+    // 5-> Maria, Ana
 
     return 0;
 }
