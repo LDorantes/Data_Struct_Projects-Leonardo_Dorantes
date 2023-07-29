@@ -98,6 +98,12 @@ int main()
     estructura de tipo LIST para almacenar los nombres de los pacientes. 
     Que nos permite agregar elementos al final de la lista de manera eficiente
     y mantener un orden  de los pacientes atendidos.
+
+    CORRECION: 
+    sE SUSTITUYO lIST POR LQueue dado es una estructura de datos disenada para implementar una cola 
+    LQueue tiene una complejiadad O(1) lo cual mejora nuestro rendimiento 
+    Al tener una complejidad constante, no importa cuantos pacientes haya en la cola
+    el tiempo de ejecución para agregar o eliminar un paciente siempre sera el mismo.
    */
 
     return 0;

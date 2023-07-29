@@ -26,7 +26,7 @@ public:
 
     T front()
     {
-        if (data.GetSize() > 0)
+        if (!data.IsEmpty())
         {
             return data.GetByIndex(0)->data;
         }
@@ -55,9 +55,18 @@ public:
 
     void PrintQueue()
     {
-        data.Print(); // Utilizamos la función Print de la clase List para imprimir los elementos de la lista
+        data.Print(); // Utilizamos la funcion Print de la clase List para imprimir los elementos de la lista
     }
 
+    bool IsEmpty() const
+    {
+        return data.IsEmpty(); // Verifica si la lista esta vacia
+    }
+
+    int GetSize() const
+    {
+        return data.GetSize(); // Obtiene el tamano de la lista
+    }
 };
 #endif // LQUEUE
 

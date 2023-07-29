@@ -1,6 +1,6 @@
 #pragma once
 #include <queue>
-#include "ListE.h"
+#include "LQueue.h"
 #include <string>
 
 class Triage
@@ -18,7 +18,6 @@ private:
         }
     };
 
-
     struct CompareUrgency
     {
         bool operator()(const Patient& p1, const Patient& p2)
@@ -28,35 +27,28 @@ private:
     };
 
     std::priority_queue<Patient, std::vector<Patient>, CompareUrgency> patientQueue;
-    List<std::string> attendedPatients;
-    List<std::string> patientLevels[5];
+    LQueue<std::string> attendedPatients;
+    LQueue<std::string> patientLevels[5];
 
 public:
     void AddPatient(const std::string& patient_name, int urgency)
     {
-        //std::cout << "Adding patient: " << patient_name << ", Urgency: " << urgency << std::endl;
         patientQueue.push(Patient(patient_name, urgency));
-        patientLevels[urgency - 1].PushBack(patient_name); // Agrega el nombre del paciente a la lista correspondiente
-        //std::cout << "Patient added successfully" << std::endl;
+        patientLevels[urgency - 1].Enqueue(patient_name);
     }
-
-
-
 
     void PassPatient()
     {
         for (int i = 0; i < 5; i++)
         {
-            List<std::string>& levelList = patientLevels[i];
-            if (!levelList.IsEmpty())
+            LQueue<std::string>& levelQueue = patientLevels[i];
+            if (!levelQueue.IsEmpty())
             {
-                levelList.PopFront();
+                levelQueue.Dequeue();
                 break;
             }
         }
     }
-
-
 
     void Print()
     {
@@ -64,30 +56,25 @@ public:
         {
             std::cout << i + 1 << "-> ";
 
-            List<std::string>& levelList = patientLevels[i];
-            if (levelList.IsEmpty())
+            LQueue<std::string>& levelQueue = patientLevels[i];
+            if (levelQueue.IsEmpty())
             {
                 std::cout << std::endl;
                 continue;
             }
 
-            ListNode<std::string>* currentNode = levelList.begin();
-            while (currentNode != nullptr)
+            LQueue<std::string> tempQueue = levelQueue;
+            while (!tempQueue.IsEmpty())
             {
-                std::cout << currentNode->data;
-                if (currentNode->next != nullptr)
+                std::cout << tempQueue.front();
+                tempQueue.Dequeue();
+                if (!tempQueue.IsEmpty())
                 {
                     std::cout << ", ";
                 }
-                currentNode = currentNode->next;
             }
 
             std::cout << std::endl;
         }
     }
-
-
-
-
-
 };
