@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include<stack>
 // BinaryTree::Node
 
 
@@ -8,8 +9,13 @@ template<typename T>
 class BinaryTree
 {
 private:
+	
+
+	// Bandera para indicar qué pila utilizar
+	bool useCustomStack;
 	template <typename U>
 	struct Node
+		
 	{
 	public: // por defecto en una struct, todo es público, pero lo pongo por claridad.
 		Node(U in_data, Node<U>* in_parent, Node<U>* in_left = nullptr, Node<U>* in_right = nullptr) :
@@ -29,8 +35,8 @@ private:
 
 	Node<T>* root; // Nodo raíz del árbol.
 
-public:
-	BinaryTree() : root(nullptr)
+public: 
+	BinaryTree(bool useCustom = true) : root(nullptr), useCustomStack(useCustom)
 	{
 	}
 
@@ -210,6 +216,27 @@ public:
 			return Predecessor(in_x->parent);
 		}
 	}
+	bool GetPredecessorValue(T value, T& predecessorValue)
+	{
+		Node<T>* node = Search(value);
+		if (node == nullptr)
+		{
+			std::cout << "El nodo con valor " << value << " no se encuentra en el árbol." << std::endl;
+			return false;
+		}
+
+		Node<T>* predecessorNode = Predecessor(node);
+		if (predecessorNode != nullptr)
+		{
+			predecessorValue = predecessorNode->data;
+			return true;
+		}
+		else
+		{
+			std::cout << "No se encontró un predecesor para el nodo con valor " << value << std::endl;
+			return false;
+		}
+	}
 
 
 
@@ -229,6 +256,34 @@ public:
 		}
 		// Si no, no se hace nada, y solo se sale de la función.
 	}
+	// Función para realizar el recorrido InOrder de forma iterativa
+	void InOrderIterative(Node<T>* root)
+	{
+		if (root == nullptr)
+		{
+			return;
+		}
+
+		std::stack<Node<T>*> stack;
+		Node<T>* current = root;
+
+		while (!stack.empty() || current != nullptr)
+		{
+			if (current != nullptr)
+			{
+				stack.push(current);
+				current = current->left;
+			}
+			else
+			{
+				current = stack.top();
+				stack.pop();
+				std::cout << current->data << ", ";
+				current = current->right;
+			}
+		}
+	}
+
 
 	/*
 	*	Pre-Order
@@ -245,6 +300,28 @@ public:
 			PreOrder(in_x->right);
 		}
 		// Si no, no se hace nada, y solo se sale de la función.
+	}
+	void PreOrderIterative(Node<T>* root) 
+	{
+		std::stack<Node<T>*> stdStack;
+		if (root == nullptr)
+			return;
+
+		stdStack.push(root);
+
+		while (!stdStack.empty())
+		{
+			Node<T>* current = stdStack.top();
+			stdStack.pop();
+
+			std::cout << current->data << ", ";
+
+			if (current->right != nullptr)
+				stdStack.push(current->right);
+
+			if (current->left != nullptr)
+				stdStack.push(current->left);
+		}
 	}
 
 	/*
@@ -263,6 +340,41 @@ public:
 		}
 		// Si no, no se hace nada, y solo se sale de la función.
 	}
+	void PostOrderIterative(Node<T>* in_x)
+	{
+		if (root == nullptr)
+		{
+			std::cout << "El arbol esta vacio." << std::endl;
+			return;
+		}
+
+		std::stack<Node<T>*> firstStack;
+		std::stack<Node<T>*> secondStack;
+		Node<T>* current = root;
+
+		// Realizar el recorrido PreOrder inverso utilizando la primera pila
+		firstStack.push(current);
+		while (!firstStack.empty())
+		{
+			Node<T>* temp = firstStack.top();
+			firstStack.pop();
+			secondStack.push(temp);
+
+			if (temp->left)
+				firstStack.push(temp->left);
+			if (temp->right)
+				firstStack.push(temp->right);
+		}
+
+		// Recorrer la segunda pila para obtener el recorrido PostOrder
+		while (!secondStack.empty())
+		{
+			Node<T>* temp = secondStack.top();
+			secondStack.pop();
+			std::cout << temp->data << ", ";
+		}
+	}
+
 
 	void Transplant(Node<T>* in_u, Node<T>* in_v)
 	{
