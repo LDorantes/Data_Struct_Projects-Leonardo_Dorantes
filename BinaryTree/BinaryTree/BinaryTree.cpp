@@ -3,8 +3,9 @@
 
 int main()
 {
-  
-    BinaryTree<int> myBT = BinaryTree<int>(); // Creamos un objeto BinaryTree que almacenará enteros.
+    // Creamos un objeto BinaryTree que almacenará enteros.
+    BinaryTree<int> myBT = BinaryTree<int>(); 
+    
 
     // Insertamos algunos valores en el árbol.
     myBT.Insert(5);

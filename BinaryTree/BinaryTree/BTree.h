@@ -10,9 +10,7 @@ class BinaryTree
 {
 private:
 	
-
-	// Bandera para indicar qué pila utilizar
-	bool useCustomStack;
+	// Definición de la estructura del nodo del árbol
 	template <typename U>
 	struct Node
 		
@@ -36,7 +34,7 @@ private:
 	Node<T>* root; // Nodo raíz del árbol.
 
 public: 
-	BinaryTree(bool useCustom = true) : root(nullptr), useCustomStack(useCustom)
+	BinaryTree() : root(nullptr) 
 	{
 	}
 
@@ -49,7 +47,7 @@ public:
 			DeleteNode(root);
 		}
 	}
-
+	// Obtenemos el nodo raíz del árbol
 	Node<T>* GetRoot()
 	{
 		return root;
@@ -107,6 +105,7 @@ public:
 		}
 	}
 
+	// Búsqueda de un valor en el árbol
 	Node<T>* Search(T value)
 	{
 		Node<T>* temp = root;
@@ -191,7 +190,7 @@ public:
 		}
 	}
 
-	//  función Predecessor()
+	// Función para encontrar el predecesor de un nodo dado
 	Node<T>* Predecessor(Node<T>* in_x)
 	{
 		if (in_x->left != nullptr)
@@ -200,22 +199,23 @@ public:
 			// el predecesor es el nodo más a la derecha del subárbol izquierdo.
 			return MaximumFromNode(in_x->left);
 		}
-		else if (in_x->parent != nullptr && in_x == in_x->parent->right)
+		else if (in_x->parent != nullptr && in_x == in_x->parent->left)
 		{
 			// Caso 2: Si el nodo in_x no tiene hijo izquierdo
-			// y es un hijo derecho de su padre,
+			// y es un hijo izquierdo de su padre,
 			// entonces el predecesor es el nodo padre.
 			return in_x->parent;
 		}
 		else
 		{
 			// Caso 3: Si el nodo in_x no tiene hijo izquierdo
-			// y es un hijo izquierdo de su padre,
+			// y es un hijo derecho de su padre,
 			// entonces el predecesor se encuentra buscando recursivamente
 			// el predecesor del nodo padre (es decir, llamando a Predecessor(in_x->parent)).
 			return Predecessor(in_x->parent);
 		}
 	}
+
 	bool GetPredecessorValue(T value, T& predecessorValue)
 	{
 		Node<T>* node = Search(value);
@@ -267,7 +267,7 @@ public:
 		std::stack<Node<T>*> stack;
 		Node<T>* current = root;
 
-		while (!stack.empty() || current != nullptr)
+		while (!stack.empty() || current != nullptr) 
 		{
 			if (current != nullptr)
 			{
@@ -283,6 +283,7 @@ public:
 			}
 		}
 	}
+
 
 
 	/*
